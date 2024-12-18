@@ -1,8 +1,9 @@
-from src.masks import get_mask_card_number, get_mask_account
 from typing import Union
 
+from src.masks import get_mask_account, get_mask_card_number
 
-def mask_account_card(user_input: Union[str, int]) -> str:
+
+def mask_account_card(user_input: str) -> str:
     """Маскирует информацию о картах и счетах"""
     if "Счет" in user_input:
         return f"Счет {get_mask_account(user_input)}"
