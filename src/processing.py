@@ -13,5 +13,6 @@ def filter_by_state(last_dict: List[Dict], value_key: str = "EXECUTED") -> List[
 
 def sort_by_date(list_dict: List[Dict], arg_for_sort: bool = True) -> List[Dict]:
     """Возвращает новый список, отсортированный по дате(date)"""
+
     sort_list = sorted(list_dict, key=lambda every_dict: every_dict["date"], reverse=arg_for_sort)
     return sort_list

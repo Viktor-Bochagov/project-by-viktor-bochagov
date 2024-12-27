@@ -3,6 +3,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(user_input: str) -> str:
     """Маскирует информацию о картах и счетах"""
+
     if "Счет" in user_input:
         return f"Счет {get_mask_account(user_input)}"
     else:
@@ -13,4 +14,5 @@ def mask_account_card(user_input: str) -> str:
 
 def get_date(date: str) -> str:
     """Возвращает дату в формате ДД.ММ.ГГГГ"""
+
     return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
