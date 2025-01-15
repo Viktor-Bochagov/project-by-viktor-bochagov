@@ -18,6 +18,5 @@ def test_get_data(old_data: str) -> None:
 
 
 def test_get_data_negative() -> None:
-    with pytest.raises(TypeError) as exc_info:
+    with pytest.raises(TypeError, match='Отсутствует обязательный аргумент'):
         get_date("")
-    assert str(exc_info.value) == "Отсутствует обязательный аргумент"
