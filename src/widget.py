@@ -3,14 +3,24 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(user_input: str) -> str:
     """Маскирует информацию о картах и счетах"""
-    if "Счет" in user_input:
-        return f"Счет {get_mask_account(user_input)}"
-    else:
-        card_numbers = get_mask_card_number(user_input[-16:])
-        card_mask = user_input.replace(user_input[-16:], card_numbers)
-        return card_mask
+
+    if len(user_input.split()[-1]) == 16:
+        new_card = get_mask_card_number(user_input.split()[-1])
+        result = f"{user_input[:-16]}{new_card}"
+    elif len(user_input.split()[-1]) == 20:
+        new_card = get_mask_account(user_input.split()[-1])
+        result = f"{user_input[:-20]}{new_card}"
+    elif len(get_mask_card_number(user_input.split()[-1])) != 16:
+        raise IndexError("Не соответствует длина строки номера карты")
+    elif len(get_mask_account(user_input.split()[-1])) != 20:
+        raise IndexError("Не соответствует длина строки номера счёта")
+    return result
 
 
 def get_date(date: str) -> str:
     """Возвращает дату в формате ДД.ММ.ГГГГ"""
-    return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
+
+    if date == "":
+        raise TypeError("Отсутствует обязательный аргумент")
+    data_slize = date[0:10].split("-")
+    return ".".join(data_slize[::-1])
