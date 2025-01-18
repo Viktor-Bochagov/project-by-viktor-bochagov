@@ -1,4 +1,4 @@
-from typing import Any, Dict, Iterable
+from typing import Dict, Iterable
 
 
 def filter_by_currency(list_dict_check: Iterable[Dict], value_key: str = "USD") -> Iterable[Dict]:
@@ -11,3 +11,13 @@ def filter_by_currency(list_dict_check: Iterable[Dict], value_key: str = "USD") 
             continue
         elif (check_dict["operationAmount"]["currency"]["code"]) != value_key:
             raise TypeError("Не соответствует заданной валюте")
+
+
+def transaction_descriptions(list_dict: Iterable[Dict], key: str = "description") -> Iterable[Dict]:
+    """Функция который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
+
+    for check_key in list_dict:
+        if key in check_key:
+            yield check_key[key]
+        elif not check_key.get(key):
+            raise TypeError("Отсутствует строка")

@@ -1,7 +1,7 @@
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 transactions = [
     {
@@ -55,6 +55,11 @@ transactions = [
 usd_transactions = filter_by_currency(transactions, "USD")
 for transaction in usd_transactions:
     print(transaction)
+
+
+descriptions = transaction_descriptions(transactions, "description")
+for description in descriptions:
+    print(description)
 
 
 print(get_mask_card_number('7000792289606361'))
