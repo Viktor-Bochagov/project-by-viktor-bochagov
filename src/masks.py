@@ -1,7 +1,7 @@
 from typing import Union
 
 
-def get_mask_card_number(card_num: Union[str, int]) -> str:
+def get_mask_card_number(card_num: Union[str]) -> str:
     """Возвращает маску номера по правилу XXXX XX ** **** XXXX"""
 
     if card_num == "":
@@ -11,7 +11,7 @@ def get_mask_card_number(card_num: Union[str, int]) -> str:
     return f"{card_num[:4]} {card_num[4:6]}** **** {card_num[-4:]}"
 
 
-def get_mask_account(account: Union[str, int]) -> str:
+def get_mask_account(account: Union[str]) -> str:
     """Возвращает маску номера по правилу **XXXX"""
 
     if account == "":
