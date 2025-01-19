@@ -1,4 +1,4 @@
-from typing import Dict, Iterable
+from typing import Any, Dict, Iterable
 
 
 def filter_by_currency(list_dict_check: Iterable[Dict], value_key: str = "USD") -> Iterable[Dict]:
@@ -21,3 +21,15 @@ def transaction_descriptions(list_dict: Iterable[Dict], key: str = "description"
             yield check_key[key]
         elif not check_key.get(key):
             raise TypeError("Отсутствует строка")
+
+
+def card_number_generator(start: int, stop: int) -> Any:
+    """Функция-генератор которая принимает начальное и конечное значения для генерации диапазона номеров."""
+
+    if start >= stop:
+        raise IndexError("Неправильный ввод данных")
+    for card_list in range(start, stop):
+        if 1 <= start <= 9999999999999999 or 1 <= stop <= 9999999999999999:
+            card_number = "".join(f"{card_list:016}" for _ in range(16))
+            formatted_card_number = " ".join([card_number[i: i + 4] for i in range(0, 16, 4)])
+            yield formatted_card_number

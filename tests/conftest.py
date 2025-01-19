@@ -1,6 +1,8 @@
-from typing import Dict, Iterable, List, Union
+from typing import Any, Dict, Iterable, List, Union
 
 import pytest
+
+import src.generators as generators
 
 
 @pytest.fixture
@@ -148,3 +150,8 @@ def list_dict() -> Iterable[Dict]:
             "to": "Счет 14211924144426031657",
         },
     ]
+
+
+@pytest.fixture
+def card_number() -> Any:
+    return generators.card_number_generator(1, 5)
