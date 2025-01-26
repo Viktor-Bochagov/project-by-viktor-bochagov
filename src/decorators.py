@@ -26,8 +26,6 @@ def log(filename: Optional[str] = None) -> Callable:
                     print(f"Результат: {result}")
                     print(f"Функция {function.__name__} успешно выполнена.")
 
-                return result
-
             except Exception as e:
                 error_message = f"Ошибка в функции {function.__name__}: {e}"
                 if filename:
@@ -37,9 +35,7 @@ def log(filename: Optional[str] = None) -> Callable:
                     print(error_message)
                 raise
             return result
-
         return wrapper
-
     return my_decorators_error
 
 
