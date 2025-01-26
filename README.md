@@ -14,6 +14,10 @@
 Функция card_number_generator:
 Функция-генератор которая принимает начальное и конечное значения для генерации диапазона номеров.
 
+# Добавлен новый модуль decorators.py в пакет src
+
+Декоратор 'log' автоматически логирует начало и конец выполнения функции, а также ее результаты или возникшие ошибки.
+
 # Тестирование:
 
 Добавлены модули с тестами по всем модулям из папки src.
@@ -42,6 +46,7 @@
 Примеры использования функций:
 
 ```python
+from src.decorators import my_function
 from src.processing import filter_by_state, sort_by_date
 from src.widget import mask_account_card
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
@@ -71,4 +76,8 @@ for description in descriptions:
 
 for card in card_number_generator(1, 6):
     print(card)
+
+# Пример использования декоратора log
+my_function(1, 3)
+my_function(4, 3)
 ```
