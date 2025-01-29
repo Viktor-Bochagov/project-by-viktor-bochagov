@@ -1,7 +1,8 @@
 from typing import Any, Dict, Iterable, List, Union
+from unittest.mock import patch
 
 import pytest
-from unittest.mock import patch
+
 import src.generators as generators
 
 
@@ -155,6 +156,7 @@ def list_dict() -> Iterable[Dict]:
 @pytest.fixture
 def card_number() -> Any:
     return generators.card_number_generator(1, 5)
+
 
 @pytest.fixture
 def mock_operation_json_file():

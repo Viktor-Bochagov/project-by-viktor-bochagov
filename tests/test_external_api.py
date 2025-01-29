@@ -20,4 +20,3 @@ def test_currency_conversion_usd_to_rub(mock_get) -> None:
     mock_get.assert_called_once_with(
         "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=1", headers={"apikey": api_key}
     )
-    

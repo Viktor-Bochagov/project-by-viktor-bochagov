@@ -5,6 +5,7 @@ from typing import Any
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
 
+
 def operation(open_file: Any) -> Any:
     """Принимает на вход имя JSON-файла по пути ./data/ и
     возвращает список словарей с данными о финансовых транзакциях"""
