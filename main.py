@@ -1,7 +1,9 @@
 from src.decorators import my_function
+from src.external_api import operation_transaction
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
+from src.utils import operation
 from src.widget import get_date, mask_account_card
 
 transactions = [
@@ -96,3 +98,9 @@ print(
 
 my_function(1, 3)
 my_function(4, 3)
+
+print(operation("operations"))
+
+transactions_1 = operation("operations")
+rub_amount = operation_transaction(transactions_1[3])
+print(f"Transaction amount in RUB: {rub_amount}")
