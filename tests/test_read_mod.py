@@ -13,7 +13,6 @@ def test_read_csv(mock_datafiles):
             [{"test": "1"}])
 
 
-
 def test_reader_from_csv_not_files():
     assert read_csv(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\data\\qwerty.csv") == []
 
