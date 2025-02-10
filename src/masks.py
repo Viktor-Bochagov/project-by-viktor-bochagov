@@ -1,12 +1,13 @@
 import logging
+import os
 from typing import Union
 
-logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler("./logs/mask.log", "w", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
+logger = logging.getLogger("masks")
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\logs\\masks.log")
+file_formatter = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
-logger.setLevel(logging.DEBUG)
 
 
 def get_mask_card_number(card_num: Union[str]) -> str:
