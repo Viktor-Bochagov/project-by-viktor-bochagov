@@ -1,27 +1,28 @@
-from unittest.mock import mock_open, patch
+import os
+from unittest.mock import patch
 
 import pandas as pd
 
 from src.read_mod import read_csv, read_excel
 
 
-@patch("builtins.open", new_callable=mock_open, read_data="id,state\n650703,EXECUTED\n3598919,EXECUTED")
-def test_read_csv(mocked_open):
-    # Вызываем функцию с тестовым файлом
-    result = read_csv("test.csv")
-    # Проверяем результат
-    expected_result = [{"id": "650703", "state": "EXECUTED"}, {"id": "3598919", "state": "EXECUTED"}]
-    assert result == expected_result
-    mocked_open.assert_called_once_with("test.csv", "r", encoding="utf-8")
+@patch("csv.DictReader")
+def test_read_csv(mock_datafiles):
+    mock_datafiles.return_value = [{"test": "1"}]
+    assert (read_csv(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\data\\transactions.csv") ==
+            [{"test": "1"}])
+
+
+def test_reader_from_csv_not_files():
+    assert read_csv(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\data\\qwerty.csv") == []
 
 
 @patch("pandas.read_excel")
-def test_read_xlsx(mocked_open):
-    # Вызываем функцию с тестовым файлом
-    read_data = {"id": [65073503, 359568919], "state": ["EXECUTED", "EXECUTED"]}
-    mock_data = pd.DataFrame(read_data)
-    mocked_open.return_value = mock_data
-    result = read_excel("test")
-    # Проверяем результат
-    expected_result = [{"id": 65073503, "state": "EXECUTED"}, {"id": 359568919, "state": "EXECUTED"}]
-    assert result == expected_result
+def test_reader_from_excel(mock_datafiles):
+    mock_datafiles.return_value = pd.DataFrame({"test": ["1"]})
+    assert (read_excel(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\data\\transactions_excel.xlsx")
+            == [{"test": "1"}])
+
+
+def test_reader_from_excel_not_files():
+    assert read_csv(f"{os.path.join(os.path.dirname(__file__), os.pardir)}\\data\\qwerty.csv") == []
